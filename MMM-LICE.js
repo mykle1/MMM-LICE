@@ -20,7 +20,7 @@ Module.register("MMM-LICE", {
         animationSpeed: 3000,
         initialLoadDelay: 4250,
         retryDelay: 2500,
-        updateInterval: 60 * 60* 1000, // 1 hour = 744 in a 31 day month (1000 free per month)
+        updateInterval: 45 * 60* 1000, // 45 min = 992 in a 31 day month (1000 free per month)
 
     },
 
@@ -72,7 +72,7 @@ Module.register("MMM-LICE", {
         // timestamp
         var timestamp = document.createElement("div");
         timestamp.classList.add("xsmall", "bright", "timestamp");
-        timestamp.innerHTML = moment.unix(LICE.timestamp).format('LLLL');
+        timestamp.innerHTML = "Rate as of " + moment.unix(LICE.timestamp).format('HH:mma') + " today";
         wrapper.appendChild(timestamp);
 
 
@@ -114,7 +114,7 @@ Module.register("MMM-LICE", {
 
     processLICE: function(data) {
         this.LICE = data;
-		console.log(this.LICE);
+	//	console.log(this.LICE);
         this.loaded = true;
     },
 
