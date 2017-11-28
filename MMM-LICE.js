@@ -57,7 +57,7 @@ Module.register("MMM-LICE", {
 
         if (this.config.useHeader != false) {
             var header = document.createElement("header");
-            header.classList.add("xsmall", "bright", "light");
+            header.classList.add("small", "bright", "light", "header");
             header.innerHTML = this.config.header;
             wrapper.appendChild(header);
         }
@@ -72,7 +72,7 @@ Module.register("MMM-LICE", {
         // timestamp
         var timestamp = document.createElement("div");
         timestamp.classList.add("xsmall", "bright", "timestamp");
-        timestamp.innerHTML = "Rate as of " + moment.unix(LICE.timestamp).format('HH:mma') + " today";
+        timestamp.innerHTML = "Rate as of " + moment.unix(LICE.timestamp).format('h:mm a') + " today";
         wrapper.appendChild(timestamp);
 
 
