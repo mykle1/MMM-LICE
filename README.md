@@ -17,7 +17,7 @@ MMM-LICE sounded like such a cool name that I couldn't resist.
 
 ## Examples
 
-One colored example. One default white. Make it your own.
+Many or few. You choose!
 
 ![](images/1.PNG) ![](images/2.PNG)
 
