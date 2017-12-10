@@ -16,18 +16,6 @@
   color: #FFFFFF;               /* source color. Default is white. */
 }
 
-.MMM-LICE .quote1 {
-  color: #FFFFFF;               /* quote1 color. Default is white. */
-}
-
-.MMM-LICE .quote2 {
-  color: #FFFFFF;               /* quote2 color. Default is white. */
-}
-
-.MMM-LICE .quote3 {
-  color: #FFFFFF;               /* quote3 color. Default is white. */
-}
-
-.MMM-LICE .quote4 {
-  color: #FFFFFF;               /* quote4 color. Default is white. */
+.MMM-LICE .symbol {
+  color: #62FF00;               /* symbols color. Default is white. */
 }

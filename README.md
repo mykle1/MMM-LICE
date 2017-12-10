@@ -7,7 +7,7 @@ MMM-LICE sounded like such a cool name that I couldn't resist.
 
 ## What you get
 
-* Real-time JSON API for 168 World Currencies from https://currencylayer.com/
+* Real-time exchange rate for 168 World Currencies & PRECIOUS METALS
 
 * Exact date and time (UNIX) the exchange rates were collected.
 
@@ -34,17 +34,15 @@ One colored example. One default white. Make it your own.
 
     {
         module: 'MMM-LICE',
-        position: 'top_left',                   // Best in left, center, or right regions
+        position: 'top_left',                 // Best in left, center, or right regions
         config: { 
 			accessKey: "Your API Access Key", // Free account & API Access Key at currencylayer.com
-			source: "USD",       // The source currency
-			x1: "AUD",
-			x2: "CAD",
-			x3: "PLN",
-			x4: "MXN",
+			source: "USD",                    // USD unless you upgrade from free account
+			symbols: "AUD,CHF,EUR,GBP",       // Currency symbols
 			useHeader: false,                 
 			header: "Show me the money",
-			maxWidth: "400px",
+			maxWidth: "300px",
         }
     },
 	
+## SpaceCowboysDude is outta round but he always fixes my mistakes

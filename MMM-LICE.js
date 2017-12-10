@@ -9,11 +9,8 @@ Module.register("MMM-LICE", {
     // Module config defaults.
     defaults: {
 		accessKey: "",       // Free account & API Access Key at currencylayer.com
-	    source: "",          // The source currency
-		x1: "",              // Currency you want exchanged
-		x2: "",              // Currency you want exchanged
-		x3: "",              // Currency you want exchanged
-		x4: "",              // Currency you want exchanged
+	    source: "USD",       // USD unless you upgrade from free plan
+		symbols: "",         // Add in config file
         useHeader: false,    // true if you want a header      
         header: "",          // Any text you want. useHeader must be true
         maxWidth: "300px",
@@ -32,16 +29,18 @@ Module.register("MMM-LICE", {
         return ["moment.js"];
     },
 
-    start: function() {
+		
+	start: function() {
         Log.info("Starting module: " + this.name);
 
         requiresVersion: "2.1.0",
 
         //  Set locale.
-        this.url = "http://apilayer.net/api/live?access_key=" + this.config.accessKey + "&currencies=" + this.config.source + "," + this.config.x1 + "," + this.config.x2 + "," + this.config.x3 + "," + this.config.x4 + "&format=1";
+        this.url = "http://apilayer.net/api/live?access_key=" + this.config.accessKey + "&currencies=" + this.config.symbols + "&source=" + this.config.source + "&format=1";
         this.LICE = {};
         this.scheduleUpdate();
     },
+	
 
     getDom: function() {
 
@@ -79,37 +78,32 @@ Module.register("MMM-LICE", {
         // source currency
         var source = document.createElement("div");
         source.classList.add("xsmall", "bright", "source");
-        source.innerHTML = "Source Currency = " + LICE.source;
+        source.innerHTML = "Source Currency = " + this.config.source;
         wrapper.appendChild(source);
 		
 		
-		// exchange quote1
-        var quote1 = document.createElement("div");
-        quote1.classList.add("xsmall", "bright", "quote1");
-        quote1.innerHTML = this.config.x1 + "&nbsp = &nbsp" + LICE.quotes.USDAUD;
-        wrapper.appendChild(quote1);
+		// this gets the key from the key/pair of the element (hasOwnProperty)
+		for (var Key in LICE.quotes) {
+		if (LICE.quotes.hasOwnProperty(Key)) {
+	
 		
-		// exchange quote2
-        var quote2 = document.createElement("div");
-        quote2.classList.add("xsmall", "bright", "quote2");
-        quote2.innerHTML = this.config.x2 + "&nbsp = &nbsp" + LICE.quotes.USDCAD;
-        wrapper.appendChild(quote2);
+	//// Learned this on jsfiddle. HOORAY!
+	//// This dynamically creates the div/tags for each element of LICE.quotes
+		var symbols = LICE.quotes;
+		for (var c in symbols) {
 		
-		// exchange quote3
-        var quote3 = document.createElement("div");
-        quote3.classList.add("xsmall", "bright", "quote3");
-        quote3.innerHTML = this.config.x3 + "&nbsp = &nbsp" + LICE.quotes.USDPLN;
-        wrapper.appendChild(quote3);
-		
-		// exchange quote4
-        var quote4 = document.createElement("div");
-        quote4.classList.add("xsmall", "bright", "quote4");
-        quote4.innerHTML = this.config.x4 + "&nbsp = &nbsp" + LICE.quotes.USDMXN;
-        wrapper.appendChild(quote4);
-
+			var newElement = document.createElement("div");
+			newElement.classList.add("xsmall", "bright", "symbol");
+			newElement.innerHTML += Key + ' = '+ LICE.quotes[Key]; // + " = " + symbols[c];
+			}
+		}
+			wrapper.appendChild(newElement);
+			
+	} // <-- closes key/pair loop
 		
         return wrapper;
-    },
+		
+    }, // closes getDom
 
 
     processLICE: function(data) {
