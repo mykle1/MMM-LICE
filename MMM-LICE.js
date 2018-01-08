@@ -104,6 +104,20 @@ Module.register("MMM-LICE", {
         return wrapper;
 		
     }, // closes getDom
+    
+    
+    /////  Add this function to the modules you want to control with voice //////
+
+    notificationReceived: function(notification, payload) {
+        if (notification === 'HIDE_LICE') {
+            this.hide(1000);
+            this.updateDom(300);
+        }  else if (notification === 'SHOW_LICE') {
+            this.show(1000);
+            this.updateDom(300);
+        }
+            
+    },
 
 
     processLICE: function(data) {
